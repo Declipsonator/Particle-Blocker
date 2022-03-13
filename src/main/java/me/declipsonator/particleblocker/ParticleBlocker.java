@@ -14,9 +14,6 @@ public class ParticleBlocker implements ModInitializer {
         Config.loadConfig();
 
         Runtime.getRuntime().addShutdownHook(new Thread(Config::saveConfig));
-
     }
-
-
 
 }
