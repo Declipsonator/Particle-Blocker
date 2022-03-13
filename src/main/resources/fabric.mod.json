@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 1,
+  "id": "particle-blocker",
+  "version": "${version}",
+  "name": "Particle Blocker",
+  "description": "",
+  "authors": [],
+  "contact": {},
+  "license": "LGPL-3",
+  "icon": "assets/particleblocker/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "me.declipsonator.particleblocker.ParticleBlocker"
+    ]
+  },
+  "mixins": [
+    "particle-blocker.mixins.json"
+  ],
+  "depends": {
+    "minecraft": ">=1.18.2"
+  }
+}
