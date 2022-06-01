@@ -38,7 +38,7 @@ public class Config {
     public static void loadConfig() {
         try {
             ParticleBlocker.LOG.info("Loading Configuration");
-            Path configPath = Path.of(FabricLoader.getInstance().getConfigDir().toString() + "\\particle-blocker.json");
+            Path configPath = Path.of(FabricLoader.getInstance().getConfigDir().toString() + File.separator + "particle-blocker.json");
             File configFile = configPath.toFile();
             if(!configFile.exists()) {
                 ParticleBlocker.LOG.info("Couldn't find Config file, setting everything to true");
@@ -71,7 +71,7 @@ public class Config {
         try {
             ParticleBlocker.LOG.info("Saving Configuration");
 
-            Path configPath = Path.of(FabricLoader.getInstance().getConfigDir().toString() + "\\particle-blocker.json");
+            Path configPath = Path.of(FabricLoader.getInstance().getConfigDir().toString() + "/particle-blocker.json");
             File configFile = configPath.toFile();
 
             JsonArray inactiveArray = new JsonArray();
