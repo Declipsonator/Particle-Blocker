@@ -1,6 +1,6 @@
 package me.declipsonator.particleblocker.mixins;
 
-import me.declipsonator.particleblocker.utils.ParticleButtonOption;
+import me.declipsonator.particleblocker.ParticleBlocker;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.client.gui.screen.option.VideoOptionsScreen;
 import net.minecraft.client.gui.widget.ButtonListWidget;
@@ -15,9 +15,9 @@ public class VideoOptionsScreenMixin {
     @Shadow
     private ButtonListWidget list;
 
-    @Inject(method = "init", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/widget/ButtonListWidget;addAll([Lnet/minecraft/client/option/Option;)V"))
+    @Inject(method = "init", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/widget/ButtonListWidget;addAll([Lnet/minecraft/client/option/SimpleOption;)V"))
     private void addButton(CallbackInfo ci) {
         boolean sodiumPresent = FabricLoader.getInstance().isModLoaded("sodium");
-        if(!sodiumPresent) list.addSingleOptionEntry(new ParticleButtonOption());
+        if(!sodiumPresent) list.addSingleOptionEntry(ParticleBlocker.particleButton);
     }
 }

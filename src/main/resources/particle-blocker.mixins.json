@@ -3,12 +3,11 @@
   "minVersion": "0.8",
   "package": "me.declipsonator.particleblocker.mixins",
   "compatibilityLevel": "JAVA_16",
-  "mixins": [
-  ],
   "client": [
     "ParticleManagerMixin",
+    "SimpleOptionsScreenMixin",
     "VideoOptionsScreenMixin",
-    "SimpleOptionsScreenMixin"
+    "SimpleOptionsMixin"
   ],
   "injectors": {
     "defaultRequire": 1

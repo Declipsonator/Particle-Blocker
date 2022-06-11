@@ -82,9 +82,9 @@ public class ParticlesWidget extends ElementListWidget<ParticlesWidget.Entry> {
             this.editButton.setMessage(Text.of(String.valueOf(Config.getValue(particle.toString()))));
 
             if (Config.getValue(particle.toString())) {
-                this.editButton.setMessage(editButton.getMessage().shallowCopy().formatted(Formatting.GREEN));
+                this.editButton.setMessage(editButton.getMessage().copy().formatted(Formatting.GREEN));
             } else {
-                this.editButton.setMessage(this.editButton.getMessage().shallowCopy().formatted(Formatting.RED));
+                this.editButton.setMessage(this.editButton.getMessage().copy().formatted(Formatting.RED));
             }
 
             this.editButton.render(matrices, mouseX, mouseY, tickDelta);

@@ -34,11 +34,10 @@ public class ParticleManagerMixin {
 
     @Inject(method = "addParticle(Lnet/minecraft/client/particle/Particle;)V", at = @At("HEAD"), cancellable = true)
     private void removeDirectParticles(Particle particle, CallbackInfo ci) {
-        try {
-            if (!Config.getValue(particlesAndClasses.get(particle.getClass().getSimpleName()).toString())) ci.cancel();
-        } catch(NullPointerException e) {
-            // Happens if the particle is not in particlesAndClasses (which is fine because we're only trying to get rid of the ones that are at this point)
-        }
+        Object p = particlesAndClasses.get(particle.getClass().getSimpleName());
+        if(p == null) return;
+        else if (!Config.getValue(p.toString())) ci.cancel();
+
 
     }
 
