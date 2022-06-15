@@ -5,7 +5,7 @@
   "compatibilityLevel": "JAVA_16",
   "client": [
     "ParticleManagerMixin",
-    "SimpleOptionsScreenMixin",
+    "AccessibilityOptionsScreenMixin",
     "VideoOptionsScreenMixin",
     "SimpleOptionsMixin"
   ],
