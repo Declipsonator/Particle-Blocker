@@ -9,12 +9,17 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 @Mixin(AccessibilityOptionsScreen.class)
 public class AccessibilityOptionsScreenMixin {
 
-    @Inject(method = "getOptions", at = @At("HEAD"), cancellable = true)
+    @Inject(method = "getOptions", at = @At("RETURN"), cancellable = true)
     private static void addParticleButton(GameOptions gameOptions, CallbackInfoReturnable<SimpleOption<?>[]> cir) {
-        cir.setReturnValue(new SimpleOption[]{gameOptions.getNarrator(), gameOptions.getShowSubtitles(), gameOptions.getTextBackgroundOpacity(), gameOptions.getBackgroundForChatOnly(), gameOptions.getChtOpacity(), gameOptions.getChatLineSpacing(), gameOptions.getChatDelay(), gameOptions.getAutoJump(), gameOptions.getSneakToggled(), gameOptions.getSprintToggled(), gameOptions.getDistortionEffectScale(), gameOptions.getFovEffectScale(), gameOptions.getMonochromeLogo(), gameOptions.getHideLightningFlashes(), gameOptions.getDarknessEffectScale(), ParticleBlocker.particleButton});
+        ArrayList<SimpleOption<?>> arrayList = new ArrayList<>(Arrays.asList(cir.getReturnValue()));
+        arrayList.add(ParticleBlocker.particleButton);
+        cir.setReturnValue(arrayList.toArray(cir.getReturnValue()));
     }
 
 }
