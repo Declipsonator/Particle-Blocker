@@ -1,6 +1,5 @@
 package me.declipsonator.particleblocker.mixins;
 
-import me.declipsonator.particleblocker.ParticleBlocker;
 import net.minecraft.client.particle.FireworksSparkParticle;
 import net.minecraft.client.particle.Particle;
 import net.minecraft.client.particle.ParticleManager;
@@ -12,9 +11,8 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-import org.spongepowered.asm.mixin.transformer.meta.MixinInner;
 
-@Mixin(targets = "net.minecraft.client.particle.FireworksSparkParticle$FireworkParticle")
+@Mixin(FireworksSparkParticle.FireworkParticle.class)
 public class FireworkParticleMixin {
     @Shadow @Final private ParticleManager particleManager;
 

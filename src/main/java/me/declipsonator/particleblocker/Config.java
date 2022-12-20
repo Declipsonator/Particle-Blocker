@@ -5,9 +5,8 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import me.declipsonator.particleblocker.utils.ConfigJsonTransfer;
 import net.fabricmc.loader.api.FabricLoader;
+import net.minecraft.registry.Registries;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.registry.Registry;
-
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -42,7 +41,7 @@ public class Config {
             File configFile = configPath.toFile();
             if(!configFile.exists()) {
                 ParticleBlocker.LOG.info("Couldn't find Config file, setting everything to true");
-                for(Identifier id: Registry.PARTICLE_TYPE.getIds()) setValue(id.toString(), true);
+                for(Identifier id: Registries.PARTICLE_TYPE.getIds()) setValue(id.toString(), true);
                 return;
             }
             Gson gson = new Gson();
@@ -53,7 +52,7 @@ public class Config {
                 setValue(particle, true);
             }
 
-            for(Identifier id: Registry.PARTICLE_TYPE.getIds()) {
+            for(Identifier id: Registries.PARTICLE_TYPE.getIds()) {
                 if (!config.getActiveParticles().contains(id.toString()) && !config.getInactiveParticles().contains(id.toString())) {
                     ParticleBlocker.LOG.warn("Couldn't Find " + id + " in the config file, setting value to true");
                     setValue(id.toString(), true);
@@ -75,7 +74,7 @@ public class Config {
             File configFile = configPath.toFile();
 
             JsonArray inactiveArray = new JsonArray();
-            for(Identifier id: Registry.PARTICLE_TYPE.getIds()) {
+            for(Identifier id: Registries.PARTICLE_TYPE.getIds()) {
                 if(!activeParticles.contains(id.toString())) inactiveArray.add(id.toString());
             }
             JsonArray activeArray = new JsonArray();

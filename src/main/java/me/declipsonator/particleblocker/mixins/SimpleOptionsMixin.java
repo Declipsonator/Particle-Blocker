@@ -20,10 +20,13 @@ public class SimpleOptionsMixin {
     @Shadow @Final
     Text text;
 
-    @Inject(method="createButton", at = @At("HEAD"), cancellable = true)
+    @Inject(method= "createButton*", at = @At("HEAD"), cancellable = true)
     public void makeParticleButton(GameOptions options, int x, int y, int width, CallbackInfoReturnable<ClickableWidget> cir) {
         if(text.getString().equals(Text.translatable("here.is.a.fake.key").getString())) {
-            cir.setReturnValue(new ButtonWidget(x, y, width, 20, Text.of("Particles"), (button) -> MinecraftClient.getInstance().setScreen(new ParticlesScreen(MinecraftClient.getInstance().currentScreen, options))));
+            cir.setReturnValue(new ButtonWidget.Builder(Text.of("Particles"), (button) -> MinecraftClient.getInstance().setScreen(new ParticlesScreen(MinecraftClient.getInstance().currentScreen, options)))
+                    .position(x, y)
+                    .size(width, 20)
+                    .build());
             cir.cancel();
         }
     }

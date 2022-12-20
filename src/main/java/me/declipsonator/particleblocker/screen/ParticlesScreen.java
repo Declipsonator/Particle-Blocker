@@ -8,11 +8,11 @@ import net.minecraft.client.gui.screen.option.GameOptionsScreen;
 import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.client.option.GameOptions;
 import net.minecraft.client.util.math.MatrixStack;
+import net.minecraft.registry.Registries;
 import net.minecraft.screen.ScreenTexts;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.registry.Registry;
 
 import java.util.Set;
 
@@ -29,13 +29,20 @@ public class ParticlesScreen extends GameOptionsScreen {
     protected void init() {
         particleWidget = new ParticlesWidget(this, client);
         addSelectableChild(particleWidget);
-        changeAllButton = addDrawableChild(new ButtonWidget(width / 2 - 155, height - 29, 150, 20, Text.of("Toggle All On").copy().formatted(Formatting.GREEN), (button) -> {
-            Set<Identifier> particles = Registry.PARTICLE_TYPE.getIds();
+        changeAllButton = addDrawableChild(new ButtonWidget.Builder(Text.of("Toggle All On").copy().formatted(Formatting.GREEN), (button) -> {
+            Set<Identifier> particles = Registries.PARTICLE_TYPE.getIds();
             for(Identifier particle: particles) {
                 Config.setValue(particle.toString(), !allOn);
             }
-        }));
-        addDrawableChild(new ButtonWidget(width / 2 - 155 + 160, height - 29, 150, 20, ScreenTexts.DONE, (button) -> client.setScreen(parent)));
+        })
+                .size(150, 20)
+                .position(width / 2 -155, height - 29)
+                .build());
+
+        addDrawableChild(new ButtonWidget.Builder(ScreenTexts.DONE, (button) -> client.setScreen(parent))
+                .position(width / 2 - 155 + 160, height - 29)
+                .size(150, 20)
+                .build());
     }
 
 
@@ -44,7 +51,7 @@ public class ParticlesScreen extends GameOptionsScreen {
         particleWidget.render(matrices, mouseX, mouseY, delta);
         drawCenteredText(matrices, textRenderer, title, width / 2, 8, 16777215);
         boolean allTrue = true;
-        Set<Identifier> particles = Registry.PARTICLE_TYPE.getIds();
+        Set<Identifier> particles = Registries.PARTICLE_TYPE.getIds();
 
         for (Identifier particle : particles) {
             if (!Config.getValue(particle.toString())) {
