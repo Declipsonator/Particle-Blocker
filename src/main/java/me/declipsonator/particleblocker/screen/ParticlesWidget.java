@@ -11,11 +11,11 @@ import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.font.TextRenderer;
+import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.Element;
 import net.minecraft.client.gui.Selectable;
 import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.client.gui.widget.ElementListWidget;
-import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.registry.Registries;
 import net.minecraft.text.MutableText;
 import net.minecraft.text.Text;
@@ -84,10 +84,10 @@ public class ParticlesWidget extends ElementListWidget<ParticlesWidget.Entry> {
         }
 
         @Override
-        public void render(MatrixStack matrices, int index, int y, int x, int entryWidth, int entryHeight, int mouseX, int mouseY, boolean hovered, float tickDelta) {
+        public void render(DrawContext context, int index, int y, int x, int entryWidth, int entryHeight, int mouseX, int mouseY, boolean hovered, float tickDelta) {
             TextRenderer textRenderer = client.textRenderer;
             Objects.requireNonNull(client.textRenderer);
-            textRenderer.draw(matrices, this.particleName, x + 90 - maxWidth, (float) ((y + entryHeight / 2) - 4.5), 16777215);
+            context.drawCenteredTextWithShadow(textRenderer, this.particleName, x + 90 - maxWidth, (int) ((y + entryHeight / 2) - 4.5), 16777215);
             this.editButton.setX(x + 190);
             this.editButton.setY(y);
 
@@ -99,7 +99,7 @@ public class ParticlesWidget extends ElementListWidget<ParticlesWidget.Entry> {
                 this.editButton.setMessage(this.editButton.getMessage().copy().formatted(Formatting.RED));
             }
 
-            this.editButton.render(matrices, mouseX, mouseY, tickDelta);
+            this.editButton.render(context, mouseX, mouseY, tickDelta);
         }
     }
 

@@ -1,13 +1,15 @@
 package me.declipsonator.particleblocker.screen;
 
 import me.declipsonator.particleblocker.Config;
+import me.declipsonator.particleblocker.ParticleBlocker;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
+import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.screen.option.GameOptionsScreen;
 import net.minecraft.client.gui.widget.ButtonWidget;
+import net.minecraft.client.gui.widget.OptionListWidget;
 import net.minecraft.client.option.GameOptions;
-import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.registry.Registries;
 import net.minecraft.screen.ScreenTexts;
 import net.minecraft.text.Text;
@@ -46,10 +48,11 @@ public class ParticlesScreen extends GameOptionsScreen {
     }
 
 
-    public void render(MatrixStack matrices, int mouseX, int mouseY, float delta) {
-        renderBackground(matrices);
-        particleWidget.render(matrices, mouseX, mouseY, delta);
-        drawCenteredText(matrices, textRenderer, title, width / 2, 8, 16777215);
+    @Override
+    public void render(DrawContext context, int mouseX, int mouseY, float delta) {
+        this.renderBackground(context);
+        particleWidget.render(context, mouseX, mouseY, delta);
+        context.drawCenteredTextWithShadow(textRenderer, title, width / 2, 8, 16777215);
         boolean allTrue = true;
         Set<Identifier> particles = Registries.PARTICLE_TYPE.getIds();
 
@@ -65,7 +68,7 @@ public class ParticlesScreen extends GameOptionsScreen {
         if(allOn) changeAllButton.setMessage(Text.of("Toggle All Off").copy().formatted(Formatting.RED));
         else changeAllButton.setMessage(Text.of("Toggle All On").copy().formatted(Formatting.GREEN));
 
-        super.render(matrices, mouseX, mouseY, delta);
+        super.render(context, mouseX, mouseY, delta);
     }
 
     @Override
