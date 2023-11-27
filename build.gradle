@@ -41,7 +41,7 @@ dependencies {
     include "com.github.Fallen-Breath:conditional-mixin:${project.conditional_mixins_version}"
 
     // Sodium Compatibility
-    modImplementation "maven.modrinth:sodium:${project.sodium_version}"
+    modCompileOnly "maven.modrinth:sodium:${project.sodium_version}"
 }
 
 processResources {
