@@ -50,8 +50,7 @@ public class ParticlesScreen extends GameOptionsScreen {
 
     @Override
     public void render(DrawContext context, int mouseX, int mouseY, float delta) {
-        this.renderBackgroundTexture(context);
-        super.render(context, mouseX, mouseY, delta);
+        this.renderBackground(context);
         particleWidget.render(context, mouseX, mouseY, delta);
         context.drawCenteredTextWithShadow(textRenderer, title, width / 2, 8, 16777215);
         boolean allTrue = true;
@@ -69,6 +68,7 @@ public class ParticlesScreen extends GameOptionsScreen {
         if(allOn) changeAllButton.setMessage(Text.of("Toggle All Off").copy().formatted(Formatting.RED));
         else changeAllButton.setMessage(Text.of("Toggle All On").copy().formatted(Formatting.GREEN));
 
+        super.render(context, mouseX, mouseY, delta);
     }
 
     @Override

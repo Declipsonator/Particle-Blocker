@@ -12,6 +12,9 @@
   "entrypoints": {
     "main": [
       "me.declipsonator.particleblocker.ParticleBlocker"
+    ],
+    "modmenu": [
+      "me.declipsonator.particleblocker.modmenu.ModMenuConfig"
     ]
   },
   "mixins": [

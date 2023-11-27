@@ -42,6 +42,9 @@ dependencies {
 
     // Sodium Compatibility
     modCompileOnly "maven.modrinth:sodium:${project.sodium_version}"
+
+    modCompileOnly "maven.modrinth:modmenu:${project.modmenu_version}"
+
 }
 
 processResources {
