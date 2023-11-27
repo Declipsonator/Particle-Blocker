@@ -4,12 +4,14 @@
   "package": "me.declipsonator.particleblocker.mixins",
   "compatibilityLevel": "JAVA_16",
   "client": [
-    "ParticleManagerMixin",
     "AccessibilityOptionsScreenMixin",
-    "VideoOptionsScreenMixin",
+    "FireworkParticleMixin",
+    "ParticleManagerMixin",
     "SimpleOptionsMixin",
-    "FireworkParticleMixin"
+    "VideoOptionsScreenMixin",
+    "sodium.SodiumGameOptionPagesMixin"
   ],
+  "plugin": "me.declipsonator.particleblocker.MixinConfigPlugin",
   "injectors": {
     "defaultRequire": 1
   }
