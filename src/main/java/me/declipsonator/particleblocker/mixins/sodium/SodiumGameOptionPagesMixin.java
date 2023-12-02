@@ -46,11 +46,21 @@ public abstract class SodiumGameOptionPagesMixin extends Screen {
             return;
         }
 
+        String text1 = "Particles Menu Requires that Reeses Sodium Options be installed.";
+
         drawContext.drawCenteredTextWithShadow(
                 textRenderer,
-                Text.of("Particles Menu Requires that Reeses Sodium Options be installed."),
+                Text.of(text1),
                 drawContext.getScaledWindowWidth() / 2,
                 drawContext.getScaledWindowHeight() / 2,
+                0xFFFFFF
+        );
+
+        drawContext.drawCenteredTextWithShadow(
+                textRenderer,
+                Text.of("A Second Menu is present in accessibility settings or ModMenu config"),
+                drawContext.getScaledWindowWidth() / 2,
+                drawContext.getScaledWindowHeight() / 2 + textRenderer.getWrappedLinesHeight(text1, Integer.MAX_VALUE) + 3,
                 0xFFFFFF
         );
     }
