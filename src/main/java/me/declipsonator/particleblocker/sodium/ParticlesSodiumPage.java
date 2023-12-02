@@ -54,7 +54,7 @@ public class ParticlesSodiumPage {
                 .setName(pair.title)
                 .setControl(TickBoxControl::new)
                 .setImpact(OptionImpact.LOW)
-                .setTooltip(Text.of("Toggles rendering of the " + pair.title.getString() + " particle."))
+                .setTooltip(Text.of("Disables rendering of " + pair.title.getString()))
                 .setBinding((opts, value) -> Config.changeValue(pair.idParticle.toString()), (opts) -> Config.getValue(pair.idParticle.toString()))
             .build();
     }
