@@ -87,7 +87,7 @@ public class ParticlesWidget extends ElementListWidget<ParticlesWidget.Entry> {
         public void render(DrawContext context, int index, int y, int x, int entryWidth, int entryHeight, int mouseX, int mouseY, boolean hovered, float tickDelta) {
             TextRenderer textRenderer = client.textRenderer;
             Objects.requireNonNull(client.textRenderer);
-            context.drawCenteredTextWithShadow(textRenderer, this.particleName, x + 90 - maxWidth, (int) ((y + entryHeight / 2) - 4.5), 16777215);
+            context.drawCenteredTextWithShadow(textRenderer, this.particleName, x + 90 - maxWidth, (y + entryHeight / 2) - 2, 16777215);
             this.editButton.setX(x + 190);
             this.editButton.setY(y);
 
