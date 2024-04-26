@@ -1,14 +1,21 @@
+/*
+ * Copyright (c) 2024  Declipsonator. All rights reserved.
+ *
+ * This software is licensed under the GNU Lesser General Public License version 3 (LGPL-3.0).
+ * You may obtain a copy of the license at <https://www.gnu.org/licenses/lgpl-3.0.html>.
+ *
+ */
+
 package me.declipsonator.particleblocker.screen;
 
 import me.declipsonator.particleblocker.Config;
-import me.declipsonator.particleblocker.ParticleBlocker;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.screen.option.GameOptionsScreen;
 import net.minecraft.client.gui.widget.ButtonWidget;
-import net.minecraft.client.gui.widget.OptionListWidget;
+import net.minecraft.client.gui.widget.ThreePartsLayoutWidget;
 import net.minecraft.client.option.GameOptions;
 import net.minecraft.registry.Registries;
 import net.minecraft.screen.ScreenTexts;
@@ -24,6 +31,7 @@ public class ParticlesScreen extends GameOptionsScreen {
     private ButtonWidget changeAllButton;
     private boolean allOn = true;
 
+    public final ThreePartsLayoutWidget layout = new ThreePartsLayoutWidget(this);
     public ParticlesScreen(Screen parent, GameOptions gameOptions) {
         super(parent, gameOptions, Text.of("Particles"));
     }
@@ -50,7 +58,7 @@ public class ParticlesScreen extends GameOptionsScreen {
 
     @Override
     public void render(DrawContext context, int mouseX, int mouseY, float delta) {
-        this.renderBackgroundTexture(context);
+        this.renderBackground(context, mouseX, mouseY, delta);
         super.render(context, mouseX, mouseY, delta);
         particleWidget.render(context, mouseX, mouseY, delta);
         context.drawCenteredTextWithShadow(textRenderer, title, width / 2, 8, 16777215);

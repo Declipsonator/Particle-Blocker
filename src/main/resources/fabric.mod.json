@@ -3,9 +3,17 @@
   "id": "particle-blocker",
   "version": "${version}",
   "name": "Particle Blocker",
-  "description": "",
-  "authors": [],
-  "contact": {},
+  "description": "Introduces a user-friendly graphical tool to exclude specific particles from being displayed.",
+  "authors": ["Declipsonator"],
+  "contributors": [
+    "Declipsonator",
+    "Rubyboat1207",
+    "Phoenix-Starlight"],
+  "contact": {
+    "homepage": "https://modrinth.com/mod/particles",
+    "sources": "https://github.com/Declipsonator/particle-blocker",
+    "issues": "https://github.com/Declipsonator/particle-blocker/issues"
+  },
   "license": "LGPL-3",
   "icon": "assets/particleblocker/icon.png",
   "environment": "*",
@@ -21,7 +29,7 @@
     "particle-blocker.mixins.json"
   ],
   "depends": {
-    "minecraft": ">=1.20.2"
+    "minecraft": ">=1.20.5"
   },
   "custom": {
     "sodium-extra:options": {

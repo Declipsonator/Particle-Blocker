@@ -1,17 +1,21 @@
+/*
+ * Copyright (c) 2024  Declipsonator. All rights reserved.
+ *
+ * This software is licensed under the GNU Lesser General Public License version 3 (LGPL-3.0).
+ * You may obtain a copy of the license at <https://www.gnu.org/licenses/lgpl-3.0.html>.
+ *
+ */
+
 package me.declipsonator.particleblocker.mixins.sodium;
 
-import com.google.common.collect.ImmutableList;
-import me.declipsonator.particleblocker.MixinConfigPlugin;
 import me.declipsonator.particleblocker.sodium.ParticlesSodiumPage;
 import me.fallenbreath.conditionalmixin.api.annotation.Condition;
 import me.fallenbreath.conditionalmixin.api.annotation.Restriction;
-import me.jellysquid.mods.sodium.client.gui.SodiumGameOptionPages;
 import me.jellysquid.mods.sodium.client.gui.SodiumOptionsGUI;
 import me.jellysquid.mods.sodium.client.gui.options.OptionPage;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.Screen;
-import net.minecraft.client.gui.widget.TextWidget;
 import net.minecraft.text.Text;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
@@ -19,16 +23,17 @@ import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import java.util.List;
 
 @Restriction(require = @Condition("sodium"))
 @Mixin(SodiumOptionsGUI.class)
 public abstract class SodiumGameOptionPagesMixin extends Screen {
-    @Shadow @Final private List<OptionPage> pages;
+    @Shadow @Final
+    private List<OptionPage> pages;
 
-    @Shadow private OptionPage currentPage;
+    @Shadow
+    private OptionPage currentPage;
 
     protected SodiumGameOptionPagesMixin() {
         super(Text.translatable("Sodium Options"));

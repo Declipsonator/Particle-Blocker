@@ -1,13 +1,19 @@
+/*
+ * Copyright (c) 2024  Declipsonator. All rights reserved.
+ *
+ * This software is licensed under the GNU Lesser General Public License version 3 (LGPL-3.0).
+ * You may obtain a copy of the license at <https://www.gnu.org/licenses/lgpl-3.0.html>.
+ *
+ */
+
 package me.declipsonator.particleblocker.sodium;
 
 import com.google.common.collect.ImmutableList;
 import me.declipsonator.particleblocker.Config;
-import me.declipsonator.particleblocker.screen.ParticlesWidget;
 import me.declipsonator.particleblocker.utils.idComparator;
 import me.jellysquid.mods.sodium.client.gui.options.*;
 import me.jellysquid.mods.sodium.client.gui.options.control.TickBoxControl;
 import net.fabricmc.loader.api.FabricLoader;
-import net.minecraft.client.MinecraftClient;
 import net.minecraft.registry.Registries;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;

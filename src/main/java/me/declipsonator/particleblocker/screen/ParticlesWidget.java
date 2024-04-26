@@ -1,10 +1,14 @@
+/*
+ * Copyright (c) 2024  Declipsonator. All rights reserved.
+ *
+ * This software is licensed under the GNU Lesser General Public License version 3 (LGPL-3.0).
+ * You may obtain a copy of the license at <https://www.gnu.org/licenses/lgpl-3.0.html>.
+ *
+ */
+
 package me.declipsonator.particleblocker.screen;
 
 import com.google.common.collect.ImmutableList;
-
-import java.util.*;
-import java.util.stream.Collectors;
-
 import me.declipsonator.particleblocker.Config;
 import me.declipsonator.particleblocker.utils.idComparator;
 import net.fabricmc.api.EnvType;
@@ -23,13 +27,20 @@ import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
 import org.apache.commons.lang3.StringUtils;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Objects;
+import java.util.stream.Collectors;
+
 @Environment(EnvType.CLIENT)
 public class ParticlesWidget extends ElementListWidget<ParticlesWidget.Entry> {
     final ParticlesScreen parent;
     int maxWidth;
 
+
     public ParticlesWidget(ParticlesScreen parent, MinecraftClient client) {
-        super(client, parent.width + 45, parent.height, 20, parent.height - 32, 20);
+        super(client, parent.width, parent.layout.getContentHeight(), parent.layout.getHeaderHeight(), 25);
         this.parent = parent;
         ArrayList<Identifier> particles = new ArrayList<>(Registries.PARTICLE_TYPE.getIds());
         particles.sort(new idComparator());
@@ -45,10 +56,6 @@ public class ParticlesWidget extends ElementListWidget<ParticlesWidget.Entry> {
             this.addEntry(new ParticleEntry(idParticle, text));
         }
 
-    }
-
-    protected int getScrollbarPositionX() {
-        return super.getScrollbarPositionX() + 15;
     }
 
     public int getRowWidth() {
@@ -87,8 +94,8 @@ public class ParticlesWidget extends ElementListWidget<ParticlesWidget.Entry> {
         public void render(DrawContext context, int index, int y, int x, int entryWidth, int entryHeight, int mouseX, int mouseY, boolean hovered, float tickDelta) {
             TextRenderer textRenderer = client.textRenderer;
             Objects.requireNonNull(client.textRenderer);
-            context.drawCenteredTextWithShadow(textRenderer, this.particleName, x + 90 - maxWidth, (y + entryHeight / 2) - 2, 16777215);
-            this.editButton.setX(x + 190);
+            context.drawTextWithShadow(textRenderer, this.particleName, x, (y + entryHeight / 2) - 2, 16777215);
+            this.editButton.setX(x + entryWidth - 50);
             this.editButton.setY(y);
 
             this.editButton.setMessage(Text.of(String.valueOf(Config.getValue(particle.toString()))));
