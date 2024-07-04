@@ -55,6 +55,11 @@ public class ParticlesScreen extends GameOptionsScreen {
                 .build());
     }
 
+    @Override
+    protected void addOptions() {
+
+    }
+
 
     @Override
     public void render(DrawContext context, int mouseX, int mouseY, float delta) {
