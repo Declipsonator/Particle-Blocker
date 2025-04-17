@@ -81,21 +81,7 @@ public class Config {
             Path configPath = Path.of(FabricLoader.getInstance().getConfigDir().toString() + "/particle-blocker.json");
             File configFile = configPath.toFile();
 
-            JsonArray inactiveArray = new JsonArray();
-            for(Identifier id: Registries.PARTICLE_TYPE.getIds()) {
-                if(!activeParticles.contains(id.toString())) inactiveArray.add(id.toString());
-            }
-            JsonArray activeArray = new JsonArray();
-            for(String particle: activeParticles) {
-                activeArray.add(particle);
-            }
-
-            JsonObject jsonObject = new JsonObject();
-            jsonObject.add("activeParticles", activeArray);
-            jsonObject.add("inactiveParticles", inactiveArray);
-
-            String data = jsonObject.toString();
-
+            String data = getJsonString();
 
             FileOutputStream fos = new FileOutputStream(configFile);
             BufferedOutputStream bos = new BufferedOutputStream(fos);
@@ -112,7 +98,22 @@ public class Config {
         }
     }
 
+    private static String getJsonString() {
+        JsonArray inactiveArray = new JsonArray();
+        for(Identifier id: Registries.PARTICLE_TYPE.getIds()) {
+            if(!activeParticles.contains(id.toString())) inactiveArray.add(id.toString());
+        }
+        JsonArray activeArray = new JsonArray();
+        for(String particle: activeParticles) {
+            activeArray.add(particle);
+        }
 
+        JsonObject jsonObject = new JsonObject();
+        jsonObject.add("activeParticles", activeArray);
+        jsonObject.add("inactiveParticles", inactiveArray);
+
+        return jsonObject.toString();
+    }
 
 
 }

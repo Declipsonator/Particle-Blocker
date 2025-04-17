@@ -8,7 +8,8 @@
 
 package me.declipsonator.particleblocker.sodium;
 
-import me.jellysquid.mods.sodium.client.gui.options.storage.OptionStorage;
+
+import net.caffeinemc.mods.sodium.client.gui.options.storage.OptionStorage;
 
 public class EmptyOptionStorage implements OptionStorage<Object> {
 

@@ -11,8 +11,7 @@ package me.declipsonator.particleblocker.mixins.sodium;
 import me.declipsonator.particleblocker.sodium.ParticlesSodiumPage;
 import me.fallenbreath.conditionalmixin.api.annotation.Condition;
 import me.fallenbreath.conditionalmixin.api.annotation.Restriction;
-import me.jellysquid.mods.sodium.client.gui.SodiumOptionsGUI;
-import me.jellysquid.mods.sodium.client.gui.options.OptionPage;
+import net.caffeinemc.mods.sodium.client.gui.options.OptionPage;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.Screen;
@@ -27,7 +26,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import java.util.List;
 
 @Restriction(require = @Condition("sodium"))
-@Mixin(SodiumOptionsGUI.class)
+@Mixin(net.caffeinemc.mods.sodium.client.gui.SodiumOptionsGUI.class)
 public abstract class SodiumGameOptionPagesMixin extends Screen {
     @Shadow @Final
     private List<OptionPage> pages;
@@ -36,7 +35,7 @@ public abstract class SodiumGameOptionPagesMixin extends Screen {
     private OptionPage currentPage;
 
     protected SodiumGameOptionPagesMixin() {
-        super(Text.translatable("Sodium Options"));
+        super(Text.of("Sodium Options"));
     }
 
 
